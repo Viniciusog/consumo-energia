@@ -209,6 +209,9 @@
         }
 
         #divTable {
+            margin: 20px;
+            max-width: auto;
+            height: auto;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -236,7 +239,9 @@
         }
 
         #mainDiv {
-            padding: 1%;
+            padding: 20px;
+            max-width: 100%;
+            height: auto;
         }
 
         #my {
@@ -291,6 +296,12 @@
 
         var products = []
 
+        inputAmount.oninput = function () {
+            if (inputAmount.value <= 0) {
+                inputAmount.value = "";
+            }
+        }
+
         inputDuration.oninput = function () {
 
             if (inputDuration.value > 0) {
@@ -312,6 +323,8 @@
                         document.getElementById(idProductMoneyDurationCell).innerHTML = oneProductAllMoneyDuration.toFixed(2);
                     }
                 }
+            } else {
+                inputDuration.value = ""
             }
         }
 
@@ -469,6 +482,9 @@
                 linkElementAmount.value = product.amount;
                 cellAmount.appendChild(linkElementAmount);
                 linkElementAmount.oninput = function () {
+                    if (linkElementAmount.value <= 0) {
+                        linkElementAmount.value = "1"
+                    }
                     changeAmountOfProducts(position, linkElementAmount.value)
                 }
 
