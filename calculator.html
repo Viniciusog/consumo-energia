@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&family=Roboto:wght@300;400&display=swap"
+        rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <h2>Calculadora de consumo energético</h2>
+    </header>
+    <div id="mainDiv">
+        <article id="addArticle">Adicionar Equipamento</article>
+        <div id="inputDivMother">
+            <input type="text" class="inputCreate" name="name" id="name" placeholder="Nome do equipamento" />
+            <input type="text" class="inputCreate" name="power" id="power" placeholder="Potência em W" />
+            <input type="text" class="inputCreate" name="hoursPerDay" id="hoursPerDay" placeholder="Horas por dia" />
+            <input type="number" class="inputCreate" name="amount" id="amount" placeholder="Quantidade" />
+            <select name="locale" id="locale">
+                <option value="Selecione UF">Selecione UF</option>
+                <option id="0.57" value="Acre">Acre</option>
+                <option id="0.535" value="Alagoas">Alagoas</option>
+                <option id="0.537" value="Amapá">Amapá</option>
+                <option id="0.665" value="Amazonas">Amazonas</option>
+                <option id="0.552" value="Bahia">Bahia</option>
+                <option id="0.53" value="Ceará">Ceará</option>
+                <option id="0.518" value="Distrito Federal">Distrito Federal</option>
+                <option id="0.525" value="Espírito Santo">Espírito Santo</option>
+                <option id="0.534" value="Goiás">Goiás</option>
+                <option id="0.63" value="Maranhão">Maranhão</option>
+                <option id="0.627" value="Mato Grosso">Mato Grosso</option>
+                <option id="0.61" value="Mato Grosso do Sul">Mato Grosso do Sul</option>
+                <option id="0.625" value="Minas Gerais">Minas Gerais</option>
+                <option id="0.684" value="Pará">Pará</option>
+                <option id="0.54" value="Paraíba">Paraíba</option>
+                <option id="0.518" value="Paraná">Paraná</option>
+                <option id="0.55" value="Pernambuco">Pernambuco</option>
+                <option id="0.57" value="Piauí">Piauí</option>
+                <option id="0.67" value="Rio de Janeiro">Rio de Janeiro</option>
+                <option id="0.506" value="Rio Grande do Norte">Rio Grande do Norte</option>
+                <option id="0.544" value="Rio Grande do Sul">Rio Grande do Sul</option>
+                <option id="0.577" value="Rondônia">Rondônia</option>
+                <option id="0.62" value="Roraima">Roraima</option>
+                <option id="0.474" value="Santa Catarina">Santa Catarina</option>
+                <option id="0.518" value="São Paulo">São Paulo</option>
+                <option id="0.54" value="Sergipe">Sergipe</option>
+                <option id="0.6" value="Tocantins">Tocantins</option>
+            </select>
+            <input class="inputCreate" type="number" name="duration" id="duration"
+                placeholder="Insira um período em dias" />
+            <button id="buttonAdd">Adicionar</button>
+        </div>
+        <br>
+        <hr>
+        <div id="results">
+
+            <article class="articleResult">Dinheiro total gasto por dia: </article>
+            <input type="text" id="articleDailyMoney" class="inputResult" readonly placeholder="0" />
+            <article class="articleResult">Potência total gasta por dia: </article>
+            <input type="text" id="articleDailyPower" class="inputResult" readonly placeholder="0" />
+            <article id="articleResultTextDurationMoney" class="articleResult">Dinheiro gasto em 0 dias:</article>
+            <input type="text" id="articleDurationMoney" class="inputResult" readonly placeholder="0" />
+            <article id="articleResultTextDurationPower" class="articleResult">Potência gasta em 0 dias:</article>
+            <input type="text" id="articleDurationPower" class="inputResult" readonly placeholder="0" />
+        </div>
+
+        <br>
+        <hr>
+        <article id="my">Seus equipamentos</article>
+        <br>
+        <div id="divTable">
+            <table id="table">
+                <tr>
+                    <th>Nome</th>
+                    <th>Potência</th>
+                    <th>Horas por dia</th>
+                    <th>Qtd</th>
+                    <th>UF</th>
+                    <th>Watts diário</th>
+                    <th>R$ diário</th>
+                    <th>Watts período</th>
+                    <th>R$ período</th>
+                    <th></th>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <footer class="footer-page">
+        <ul>
+            <li>© Atividade de Física Juntamente com Programação Web.</li><br>
+            <li>Angela Maria |</li>
+            <li>João Pedro |</li>
+            <li>Sara Abreu |</li>
+            <li>Vinícius de Oliveira</li>
+        </ul>
+    </footer>
+    <style>
+        body {
+            margin: 0;
+            height: 100%;
+            width: 100%;
+            padding: 0;
+            background: rgb(231, 231, 231);
+        }
+
+        .footer-page {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: small;
+            background-color: #204051;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer li {
+            display: inline;
+        }
+
+        .articleResult {
+            font-size: medium;
+            margin-left: 10px;
+            color: #204051;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .inputResult::-webkit-input-placeholder {
+            /* WebKit, Blink, Edge */
+            color: #FFF;
+        }
+
+        header {
+            top: 0;
+            padding: 0;
+            background-color: #204051;
+            color: rgb(243, 243, 243);
+            font-family: 'Regular';
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-weight: 400;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .inputResult {
+            background: #99a4aa;
+            border: none;
+            color: white;
+            outline: none;
+            text-align: right;
+        }
+
+        #inputDivMother {
+            margin: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        input {
+            margin-left: 10px;
+            margin-right: 10px;
+            padding: 8px;
+            outline: none;
+            border: none;
+            outline: none;
+            border-radius: 5px;
+        }
+
+        select {
+            margin-left: 10px;
+            margin-right: 10px;
+            border: none;
+            border-radius: 5px;
+            padding: 6px;
+            outline: none;
+        }
+
+        #addArticle {
+            margin-left: 20px;
+            font-family: 'Roboto';
+            font-size: 20px;
+        }
+
+        #buttonAdd {
+            margin-left: 10px;
+            margin-right: 10px;
+            background-color: #3e883c;
+            color: white;
+            border: none;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            outline: none
+        }
+
+        #buttonAdd:hover {
+            background-color: #529652;
+        }
+
+        #divTable {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #amountTable {
+            background-color: #a09d9d;
+            color: white;
+        }
+
+        #buttonDelete {
+            float: none;
+            border: none;
+            padding: 10%;
+            border-radius: 5px;
+            width: 100%;
+            height: 100%;
+            color: white;
+            background-color: #a0414e;
+            outline: none
+        }
+
+        #buttonDelete:hover {
+            background-color: #81414a;
+        }
+
+        #mainDiv {
+            padding: 1%;
+        }
+
+        #my {
+            margin-left: 20px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 20px;
+            font: bold;
+        }
+
+        #results {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        th {
+            background-color: #06623b;
+            color: white;
+        }
+
+        table {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 30px;
+        }
+
+        th,
+        td {
+            text-align: center;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #d4d4d4;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #fefeff;
+        }
+    </style>
+
+    <script>
+        /*SCRIPT MADE BY VINÍCIUS GUIMARÃES*/
+        var inputName = document.getElementById("name");
+        var inputDuration = document.getElementById("duration");
+        var inputHoursPerDay = document.getElementById("hoursPerDay");
+        var inputPower = document.getElementById("power");
+        var inputAmount = document.getElementById("amount");
+        var buttonAdd = document.getElementById("buttonAdd");
+        buttonAdd.onclick = addProduct;
+
+        var products = []
+
+        inputDuration.oninput = function () {
+
+            if (inputDuration.value > 0) {
+
+                if (products.length > 0) {
+                    showResults()
+                    for (product of products) {
+                        //Quanto o input de período mudar, atualizará o valor total de dinheiro de potência do período, na tabela
+                        var id = generateProductId(product.name, product.power, product.hoursPerDay, product.location)
+                        var idProductMoneyDurationCell = id + "moneyduration";
+                        var idProductPowerDurationCell = id + "powerduration";
+
+                        //var powerPerDay = calcPowerPerDay(product.power, product.hoursPerDay) * product.amount;
+                        //var moneyPerDay = calcMoneyPerDay(product.powerPerDay, product.valuePerKWLocale);
+                        var oneProductAllPowerDuration = getAllOneProductPowerDuration(inputDuration.value, /*powerPerDay*/product.powerPerDay);
+                        var oneProductAllMoneyDuration = getAllOneProductMoneyDuration(inputDuration.value, /*moneyPerDay*/product.moneyPerDay);
+
+                        document.getElementById(idProductPowerDurationCell).innerHTML = oneProductAllPowerDuration.toFixed(2);
+                        document.getElementById(idProductMoneyDurationCell).innerHTML = oneProductAllMoneyDuration.toFixed(2);
+                    }
+                }
+            }
+        }
+
+        //Adiciona um equipamento no array
+        function addProduct() {
+            //Referencia o combo box para seleção de UF
+            var e = document.getElementById("locale");
+            var locationName = e.options[e.selectedIndex].text;
+            var containsId = false;
+
+            //Chama o método que verifica os erros e atribui o resultado na variável abaixo
+            var containsError = allAlerts();
+
+            //Gera o objeto do novo equipamento a ser adicionado
+            var newProduct = { name: inputName.value, power: inputPower.value, hoursPerDay: inputHoursPerDay.value, powerPerDay: 0, moneyPerDay: 0, valuePerKWLocale: valuePerKW, location: locationName, amount: inputAmount.value }
+
+            if (!containsError) {
+                if (products.length > 0) {
+                    //Gera o id do novo equipamento a ser adicionado
+                    var newProductId = generateProductId(newProduct.name, newProduct.power, newProduct.hoursPerDay, newProduct.location);
+                    for (product of products) {
+                        //Gera o id dos equipamentos JÁ EXISTENTES
+                        //e verifica se o id do novo equipamento é igual a algum que já existe
+                        var productId = generateProductId(product.name, product.power, product.hoursPerDay, product.location);
+                        if (newProductId === productId) {
+                            console.log('contem id')
+                            containsId = true;
+                        }
+                    }
+                }
+                //Se o novo equipamento não contém id já existente, deixa adicionar na lista
+                if (!containsId) {
+                    var table = document.getElementById("table");
+                    var valuePerKW = getValueOfMoneyPerKW();
+                    var product = { name: inputName.value, power: inputPower.value, hoursPerDay: inputHoursPerDay.value, powerPerDay: 0, moneyPerDay: 0, valuePerKWLocale: valuePerKW, location: locationName, amount: inputAmount.value };
+                    products.push(product);
+                    renderProducts();
+                }
+                //Se o id do novo equipamento é IGUAL a um já existente, mostra Alerta
+                else {
+                    alert("Já existe equipamento igual!")
+                }
+            }
+        }
+
+        function allAlerts() {
+            var error = false;
+            var e = document.getElementById("locale");
+            if (!isNaN(inputName.value)) {
+                error = true;
+                alert("O nome precisa ter letras.")
+            }
+            else if (inputName.value === "") {
+                error = true;
+                alert("Insira o nome do equipamento!")
+            }
+            else if (isNaN(inputDuration.value)) {
+                error = true;
+                alert("O período precisa ser um número!")
+            }
+            else if (inputAmount.value === "") {
+                error = true;
+                alert("Insira uma quantidade")
+            }
+            else if (inputAmount.value <= 0) {
+                error = true;
+                alert("Insira uma quantidade")
+            }
+            else if (inputDuration.value <= 0) {
+                error = true;
+                alert("O período precisa ser maior que 0 dias!")
+            }
+            else if (isNaN(inputHoursPerDay.value)) {
+                error = true;
+                alert("A quantidade de horas por dia precisa ser um número!")
+            }
+            else if (inputHoursPerDay.value === "") {
+                error = true;
+                alert("Insira a quantidade de horas diárias do equipamento!")
+            }
+            else if (inputHoursPerDay.value <= 0) {
+                error = true;
+                alert("A quantidade de horas diárias precisa ser maior que 0 horas!")
+            }
+            else if (inputHoursPerDay.value > 24) {
+                error = true;
+                alert("A quantidade de horas diárias precisa ser menor que 24 horas!")
+            }
+            else if (isNaN(inputPower.value)) {
+                error = true;
+                alert("A potência precisa ser numérica!")
+            }
+            else if (inputPower.value === "") {
+                error = true
+                alert("Insira a potência do equipamento em watts!")
+            }
+            else if (inputPower.value <= 0) {
+                error = true
+                alert("A potência do equipamento precisa ser maior que 0!")
+            }
+            else if (e.options[e.selectedIndex].text === "Selecione UF") {
+                error = true;
+                alert("Escolha um Estado.")
+            }
+            return error;
+        }
+
+        //Coloca os equipamentos na tabela
+        function renderProducts() {
+
+            var varInnerHTML = "<tr><th>Nome</th><th>Potência</th><th>Horas por dia</th><th>Qtd</th><th>UF</th><th>Watts diário</th><th>R$ diário</th><th>Watts período</th><th>R$ período</th><th></th></tr>";
+            var table = document.getElementById("table");
+            table.innerHTML = varInnerHTML;
+
+            //Percorre a lista de equipamentos
+            for (product of products) {
+                var row = table.insertRow(1);
+                var name = row.insertCell(0);
+                var power = row.insertCell(1);
+                var hoursPerDay = row.insertCell(2);
+                var cellAmount = row.insertCell(3)
+                var location = row.insertCell(4);
+                var powerPerDay = row.insertCell(5);
+                var moneyPerDay = row.insertCell(6);
+                var cellPowerDuration = row.insertCell(7);
+                var cellMoneyduration = row.insertCell(8);
+                var cellButton = row.insertCell(9);
+
+                var cellId = generateProductId(product.name, product.power, product.hoursPerDay, product.location);
+                //Coloca id na célula de dinheiro e potência POR DIA
+                var cellIdDailyPower = cellId + "dailypower";
+                var cellIdDailyMoney = cellId + "dailymoney";
+                powerPerDay.setAttribute("id", cellIdDailyPower);
+                moneyPerDay.setAttribute("id", cellIdDailyMoney);
+
+                //Coloca id na célula de dinheiro e potência por período
+                var cellIdPowerDuration = cellId + "powerduration";
+                var cellIdMoneyDuration = cellId + "moneyduration";
+                cellPowerDuration.setAttribute("id", cellIdPowerDuration);
+                cellMoneyduration.setAttribute("id", cellIdMoneyDuration);
+
+                name.innerHTML = product.name;
+                power.innerHTML = product.power;
+                hoursPerDay.innerHTML = product.hoursPerDay;
+                location.innerHTML = product.location;
+
+                //POSIÇÃO DO EQUIPAMENTO NA LISTA
+                var position = products.indexOf(product);
+
+                //Cria incrementador de quantidade
+                var linkElementAmount = document.createElement('input');
+                linkElementAmount.setAttribute("id", "amountTable");
+                linkElementAmount.setAttribute("type", "number");
+                linkElementAmount.setAttribute("placeholder", "Quantidade");
+                linkElementAmount.value = product.amount;
+                cellAmount.appendChild(linkElementAmount);
+                linkElementAmount.oninput = function () {
+                    changeAmountOfProducts(position, linkElementAmount.value)
+                }
+
+                // linkElementAmount.setAttribute("oninput", "changeAmountOfProducts(" +linkElementAmount.innerHTML+  ")")
+
+                //Calcula o valor diário da potência do equipamento
+                var valuePowerPerDay = calcPowerPerDay(product.power, product.hoursPerDay);
+                //Potência diária é a potência de um unico equipamento * a quantidade que existe dele
+                product.powerPerDay = valuePowerPerDay * product.amount;
+                powerPerDay.innerHTML = product.powerPerDay;
+
+                //Calcula o valor diário em reais do equipamento
+                var valueMoneyPerDay = calcMoneyPerDay(product.powerPerDay, product.valuePerKWLocale);
+                product.moneyPerDay = valueMoneyPerDay;
+                moneyPerDay.innerHTML = parseFloat(product.moneyPerDay.toFixed(2));
+
+                //Mostra os resultados do período por equipamento
+                var oneProductAllPowerDuration = getAllOneProductPowerDuration(inputDuration.value, product.powerPerDay);
+                var oneProductAllMoneyDuration = getAllOneProductMoneyDuration(inputDuration.value, product.moneyPerDay);
+                cellPowerDuration.innerHTML = oneProductAllPowerDuration;
+                cellMoneyduration.innerHTML = oneProductAllMoneyDuration.toFixed(2);
+
+                //Cria botão para deletar um equipamento
+                var linkElementButton = document.createElement('button');
+                var linkText = document.createTextNode('Excluir');
+                linkElementButton.appendChild(linkText);
+                linkElementButton.setAttribute("id", "buttonDelete");
+                cellButton.appendChild(linkElementButton);
+
+                //Adiciona evento de clique o botão de exclusão
+                linkElementButton.setAttribute('onclick', 'deleteProduct(' + position + ')');
+            }
+            if (inputDuration.value > 0) {
+                showResults();
+            }
+        }
+
+        function generateProductId(name, power, hoursPerDay, location) {
+            var id = name + power + hoursPerDay + location;
+            return id;
+        }
+
+        //Deleta equipamento apartir de uma posição
+        function deleteProduct(position) {
+            //Vai na posição: position, e remove 1 produto da lista
+            products.splice(position, 1);
+            renderProducts();
+        }
+
+        //Retorna o preço do Kwh de cada estado
+        function getValueOfMoneyPerKW() {
+            var e = document.getElementById("locale");
+            var valueLocale = e.options[e.selectedIndex].id;
+            return valueLocale;
+        }
+
+        //Calcula potência diária de um equipamento
+        function calcPowerPerDay(power, hours) {
+            return power * hours;
+        }
+
+        //Calcula dinheiro gasto diário de um equipamento
+        function calcMoneyPerDay(powerPerDay, moneyPerKW) {
+            var kw = powerPerDay / 1000;
+            var moneyPerDay = kw * moneyPerKW;
+            return moneyPerDay;
+        }
+
+        //Retorna a potência diária consumida POR TODOS os equipamentos
+        function getAllPowerPerDay() {
+            var allPowerPerDay = 0;
+            for (product of products) {
+                allPowerPerDay += product.powerPerDay;
+            }
+            return allPowerPerDay;
+        }
+
+        //Retorna o valor total diário em dinheiro, gasto pelos equipamentos
+        function getAllMoneyPerDay() {
+            var allMoneyPerDay = 0;
+            for (product of products) {
+                allMoneyPerDay += product.moneyPerDay;
+            }
+            return allMoneyPerDay;
+        }
+
+        //Retorna o valor total da potência gasta durante o período por UM equipamento
+        function getAllOneProductPowerDuration(durationInDays, dailyPower) {
+            return durationInDays * dailyPower;
+        }
+
+        //Retorna o valor total em dinheiro gasto durante o período por UM equipamento
+        function getAllOneProductMoneyDuration(durationInDays, dailyMoney) {
+            return durationInDays * dailyMoney;
+        }
+
+        ///Retorna o valor total da potência gasta durante o período determinado
+        function getAllPowerDuration(durationInDays, allDailyPower) {
+            return durationInDays * allDailyPower;
+        }
+
+        //Retorna o valor total em dinheiro gasto durante o período determinado
+        function getAllMoneyDuration(durationInDays, allDailyMoney) {
+            return durationInDays * allDailyMoney;
+        }
+
+        function changeAmountOfProducts(position, value) {
+            if (value > 0) {
+                var product = products[position];
+                product.amount = value;
+
+                var newValuePowerPerDay = calcPowerPerDay(product.power, product.hoursPerDay) * product.amount;
+                var newValueMoneyPerDay = calcMoneyPerDay(newValuePowerPerDay, product.valuePerKWLocale);
+
+                product.powerPerDay = newValuePowerPerDay;
+                product.moneyPerDay = newValueMoneyPerDay;
+
+                var newValuePowerDuration = getAllOneProductPowerDuration(inputDuration.value, newValuePowerPerDay);
+                var newValueMoneyDuration = getAllOneProductMoneyDuration(inputDuration.value, newValueMoneyPerDay);
+
+                var id = generateProductId(product.name, product.power, product.hoursPerDay, product.location)
+                var cellIdDailyPower = id + "dailypower";
+                var cellIdDailyMoney = id + "dailymoney";
+
+                var cellIdPowerDuration = id + "powerduration";
+                var cellIdMoneyDuration = id + "moneyduration";
+
+                document.getElementById(cellIdDailyPower).innerHTML = newValuePowerPerDay;
+                document.getElementById(cellIdDailyMoney).innerHTML = newValueMoneyPerDay.toFixed(2);
+                document.getElementById(cellIdPowerDuration).innerHTML = newValuePowerDuration;
+                document.getElementById(cellIdMoneyDuration).innerHTML = newValueMoneyDuration.toFixed(2);
+
+                showResults()
+            }
+        }
+
+
+        //Mostra os resultados na tela
+        function showResults() {
+            var articleResultTextDurationMoney = document.getElementById("articleResultTextDurationMoney");
+            var articleResultTextDurationPower = document.getElementById("articleResultTextDurationPower");
+            //Variáveis que recebem os valores consumidos por dia e durante o período inserido
+            var allPowerPerDay = getAllPowerPerDay();
+            var allMoneyPerDay = getAllMoneyPerDay();
+            console.log(inputDuration.value);
+            var allDurationMoney = getAllMoneyDuration(inputDuration.value, allMoneyPerDay);
+            var allDurationPower = getAllPowerDuration(inputDuration.value, allPowerPerDay);
+
+            //Mostra em tela os valores consumidos por dia
+            var articleDailyPower = document.getElementById("articleDailyPower");
+            //Se a potência diária for menor que 999, mostra em Watts h, se não, mostra em KWh
+            if (allPowerPerDay <= 999) {
+                articleDailyPower.value = allPowerPerDay + " Watts h";
+            } else {
+                articleDailyPower.value = (allPowerPerDay / 1000) + " KWh";
+            }
+            var articleDailyMoney = document.getElementById("articleDailyMoney");
+            articleDailyMoney.value = allMoneyPerDay.toFixed(2);
+
+            //Mostra em tela os valores consumidos no período
+            articleResultTextDurationMoney.innerHTML = "Dinheiro gasto em " + inputDuration.value + " dias:"
+            var articleDurationMoney = document.getElementById("articleDurationMoney");
+            articleDurationMoney.value = allDurationMoney.toFixed(2);
+            var articleDurationPower = document.getElementById("articleDurationPower");
+
+            //Se a potência total no período for menor que 999, mostra em Watts h, se não, mostra em KWh
+            if (allDurationPower <= 999) {
+                articleResultTextDurationPower.innerHTML = "Potência gasta em " + inputDuration.value + " dias:"
+                articleDurationPower.value = allDurationMoney.toFixed(2) + " Watts h";
+            } else {
+                articleResultTextDurationPower.innerHTML = "Potência gasta em " + inputDuration.value + " dias:"
+                var result = allDurationPower / 1000;
+                articleDurationPower.value = result.toFixed(2) + " KWh";
+            }
+        }
+    </script>
+</body>
+
+</html>
